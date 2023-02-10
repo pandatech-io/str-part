@@ -1,0 +1,21 @@
+$white: #ffffff;
+$pd-color-light-gray: #f2f5f7;
+$pd-color-gray: #cccccc;
+$pd-color-dark-gray: #777777;
+$pd-color-darker-gray: #414040;
+$pd-color-black: #18191f;
+$pd-color-cerulean-blue: #2154a8;
+$pd-color-cyan-blue: #334756;
+
+// color theme
+$primary-color: $white;
+$secondary-color: lighten($primary-color, 20);
+$button-color: $pd-color-cerulean-blue;
+
+$lp-blue-primary: #2154a8;
+$lp-blue-52: rgba(211, 221, 238, 0.52);
+$lp-soft-blue: #667580;
+$lp-grey-blue: #334756;
+$lp-dark-blue: #163870;
+$lp-darkest-blue: #102a54;
+$lp-white-20: rgba(255, 255, 255, 0.1);
