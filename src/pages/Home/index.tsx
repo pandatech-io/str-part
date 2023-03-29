@@ -1,45 +1,16 @@
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button, Col, ConfigProvider, Form, Input, Row } from "antd";
 
 import MapImage from "@/assets/map.webp";
 import MotorBodyLogo from "@/assets/motor.webp";
 import MotorLogo from "@/assets/r25-4-med.webp";
 import BaseLayout from "@/layouts/baseLayout";
+import { IContact } from "@/libs/interfaces/mail";
+import { WEB_SERVICES } from "@/services";
 
 import "./style.scss";
 
 const Home = () => {
-  const products = [
-    {
-      img: "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-      title: "Just Launched",
-      description: "This is the feature that highlights your project from the competitors.",
-    },
-    {
-      img: "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-      title: "Exciting News",
-      description: "This is the feature that highlights your project from the competitors.",
-    },
-    {
-      img: "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-      title: "Insider Stories",
-      description: "This is the feature that highlights your project from the competitors.",
-    },
-    {
-      img: "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-      title: "Fresh Content",
-      description: "This is the feature that highlights your project from the competitors.",
-    },
-    {
-      img: "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-      title: "Exclusive Freebies",
-      description: "This is the feature that highlights your project from the competitors.",
-    },
-    {
-      img: "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-      title: "Weekly Giveaways",
-      description: "This is the feature that highlights your project from the competitors.",
-    },
-  ];
   const dummyData = [
     {
       title: "Showcase and embed your work with",
@@ -51,6 +22,14 @@ const Home = () => {
       title: "Sell your videos worldwide",
     },
   ];
+  const { data } = useQuery(["products"], () => WEB_SERVICES.Product.getProducts());
+  const { mutate, isLoading } = useMutation(["send-email"], (payload: IContact) =>
+    WEB_SERVICES.Mail.sendContact(payload),
+  );
+
+  const handleFinish = (values: IContact) => {
+    mutate(values);
+  };
   return (
     <BaseLayout>
       <div className="pd-home">
@@ -120,10 +99,10 @@ const Home = () => {
               width: 900,
             }}
           >
-            {products.slice(0, 6).map((product) => (
+            {data?.data.slice(0, 6).map((product) => (
               <Col span={8} key={product.title}>
                 <div className="pd-home-products-card">
-                  <img src={product.img} alt={product.title} width={100} height={70} />
+                  <img src={product.fakepath} alt={product.title} width={100} height={70} />
                   <div className="pd-home-products-card-title">{product.title}</div>
                   <div className="pd-home-products-card-description">{product.description}</div>
                 </div>
@@ -212,7 +191,7 @@ const Home = () => {
             >
               <Col span={11}>
                 <div className="pd-home-product-inquiry-form">
-                  <Form name="basic" autoComplete="off" layout="vertical">
+                  <Form name="basic" autoComplete="off" layout="vertical" onFinish={handleFinish}>
                     <Form.Item label="Email" name="email">
                       <Input size="large" className="pd-home-product-inquiry-form-input" />
                     </Form.Item>
@@ -244,6 +223,7 @@ const Home = () => {
                         htmlType="submit"
                         size="large"
                         style={{ letterSpacing: 4, fontSize: 14, marginTop: 32 }}
+                        loading={isLoading}
                       >
                         SEND
                       </Button>

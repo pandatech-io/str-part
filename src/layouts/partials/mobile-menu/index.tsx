@@ -25,16 +25,16 @@ const MobileMenu = ({ handleClose }: MobileMenuProps) => {
       <Row>
         <div className="mobile-menu">
           <Link to={"/"} onClick={handleClose}>
-            <div className="menu">Beranda</div>
+            <div className="menu">Home</div>
           </Link>
-          <Link to={"/products?filter=all"} onClick={handleClose}>
-            <div className="menu">Produk</div>
+          <Link to={"/products"} onClick={handleClose}>
+            <div className="menu">Products</div>
           </Link>
           <Link to={"/about-us"} onClick={handleClose}>
-            <div className="menu">Tentang Kami</div>
+            <div className="menu">About Us</div>
           </Link>
-          <Link to={"/contact"} onClick={handleClose}>
-            <div className="menu">Hubungi Kami</div>
+          <Link to={"/contact-us"} onClick={handleClose}>
+            <div className="menu">Contact</div>
           </Link>
         </div>
       </Row>

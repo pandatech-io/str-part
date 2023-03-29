@@ -1,41 +1,26 @@
+import * as React from "react";
+
+import { useQuery } from "@tanstack/react-query";
 import { Col, Row } from "antd";
 
 import BaseLayout from "@/layouts/baseLayout";
+import { WEB_SERVICES } from "@/services";
 
 import "./style.scss";
 
 const Products = () => {
-  const categories = ["All", "Kampas", "Bulbs", "Clutch"];
-  const products = [
+  const [selectedCategories, setSelectedCategories] = React.useState(0);
+  const { data: products } = useQuery(["products"], () => WEB_SERVICES.Product.getProducts());
+  const { data: categories } = useQuery(["categories"], () =>
+    WEB_SERVICES.Category.getCategories(),
+  );
+  const { data: category } = useQuery(
+    ["category", selectedCategories],
+    () => WEB_SERVICES.Category.getCategory(selectedCategories),
     {
-      name: "Rem Kampas",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image:
-        "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
+      enabled: selectedCategories > 0,
     },
-    {
-      name: "Rem Kampas",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image:
-        "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-    },
-    {
-      name: "Rem Kampas",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image:
-        "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-    },
-    {
-      name: "Rem Kampas",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      image:
-        "https://res.cloudinary.com/ds73yosji/image/upload/v1667745068/Products/silver_llziwd.png",
-    },
-  ];
+  );
   return (
     <BaseLayout>
       <div className="pd-products">
@@ -43,14 +28,21 @@ const Products = () => {
           <div className="pd-products-title">Our Products</div>
           <Row>
             <Col span={2} className="pd-products-category">
-              {categories.map((category, index) => (
-                <div className="pd-products-category-title" key={index}>
-                  {category}
+              {categories?.data.map((category, index) => (
+                <div
+                  className={`pd-products-category-title ${
+                    selectedCategories === category.id && "active"
+                  }`}
+                  key={index}
+                  onClick={() => setSelectedCategories(category.id)}
+                  role="presentation"
+                >
+                  {category.title}
                 </div>
               ))}
             </Col>
             <Col span={20} offset={2}>
-              <img
+              {/* <img
                 src={products[0].image}
                 alt={products[0].name}
                 height={200}
@@ -58,26 +50,54 @@ const Products = () => {
                 style={{ objectFit: "contain" }}
               />
               <div className="pd-products-detail-title">{products[0].name}</div>
-              <div className="pd-products-detail-description">{products[0].description}</div>
-              {/* <Row gutter={[32, 32]}>
-                {products.map((product) => (
-                  <Col span={8}>
-                    <div className="pd-products-card">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        width="100%"
-                        height="100%"
-                        style={{ objectFit: "contain" }}
-                      />
-                      <div className="pd-products-card-hover">
-                        <div className="pd-products-card-title">{product.name}</div>
-                        <div className="pd-products-card-description">{product.description}</div>
-                      </div>
-                    </div>
-                  </Col>
-                ))}
-              </Row> */}
+              <div className="pd-products-detail-description">{products[0].description}</div> */}
+              <Row gutter={[32, 32]}>
+                {selectedCategories > 0 ? (
+                  <React.Fragment>
+                    {category?.data.Products.map((product) => (
+                      <Col span={8} key={product.id}>
+                        <div className="pd-products-card">
+                          <img
+                            src={product.fakepath}
+                            alt={product.title}
+                            width="100%"
+                            height="100%"
+                            style={{ objectFit: "contain" }}
+                          />
+                          <div className="pd-products-card-hover">
+                            <div className="pd-products-card-title">{product.title}</div>
+                            <div className="pd-products-card-description">
+                              {product.description}
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                    ))}
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    {products?.data.map((product) => (
+                      <Col span={8} key={product.id}>
+                        <div className="pd-products-card">
+                          <img
+                            src={product.fakepath}
+                            alt={product.title}
+                            width="100%"
+                            height="100%"
+                            style={{ objectFit: "contain" }}
+                          />
+                          <div className="pd-products-card-hover">
+                            <div className="pd-products-card-title">{product.title}</div>
+                            <div className="pd-products-card-description">
+                              {product.description}
+                            </div>
+                          </div>
+                        </div>
+                      </Col>
+                    ))}
+                  </React.Fragment>
+                )}
+              </Row>
             </Col>
           </Row>
         </div>

@@ -22,6 +22,11 @@
       color: #1c1b24;
       letter-spacing: 4px;
       text-transform: uppercase;
+      cursor: pointer;
+      padding-bottom: 8px;
+      &.active {
+        border-bottom: 2px solid #18519b;
+      }
     }
   }
   &-card {
@@ -47,6 +52,7 @@
       padding: 28px;
       height: 100%;
       border-radius: 5px;
+      width: 100%;
       &:hover {
         opacity: 0.8;
       }

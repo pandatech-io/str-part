@@ -3,7 +3,7 @@ import Axios, { InternalAxiosRequestConfig } from "axios";
 import useNotification from "@/hooks/useNotification";
 
 export const axiosInstance = Axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: import.meta.env.MODE === "development" ? "/dev" : import.meta.env.VITE_BASE_URL,
 });
 
 axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
