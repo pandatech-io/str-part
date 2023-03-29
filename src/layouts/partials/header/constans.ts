@@ -1,18 +1,18 @@
 export const navigations = [
   {
     to: "/",
-    name: "Beranda",
+    name: "Home",
   },
   {
-    to: "/products?filter=all",
-    name: "Produk",
+    to: "/products",
+    name: "Products",
   },
   {
     to: "/about-us",
-    name: "Tentang Kami",
+    name: "About Us",
   },
   {
     to: "/contact-us",
-    name: "Hubungi Kami",
+    name: "Contact",
   },
 ];
