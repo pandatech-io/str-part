@@ -1,0 +1,58 @@
+@import "../../../scss/variables/index";
+
+.pd-header {
+  background: $primary-color;
+  color: $pd-color-light-gray;
+  padding: $spacing-md $spacing-lg;
+  position: fixed;
+  transition: transform 130ms ease;
+  width: 100%;
+  will-change: transform;
+  z-index: 1;
+
+  .menu-icon {
+    font-size: 18px;
+  }
+
+  &--transform {
+    transform: translateY(-100%);
+  }
+
+  + .leverage {
+    height: 3.3rem;
+  }
+
+  a {
+    &:hover {
+      color: $pd-color-white;
+    }
+  }
+
+  &-logo {
+    min-width: 125px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-right {
+    text-align: center;
+
+    & .menu {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      margin-bottom: 0px;
+      padding: 0px;
+
+      .nav-link {
+        list-style: none;
+
+        &.active {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+.pd-home {
+  &-container {
+    margin-top: 150px;
+    margin-bottom: 80px;
+    padding: 0px 64px;
+  }
+  &-main {
+    &-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    &-title {
+      font-weight: 400;
+      font-size: 60px;
+      color: #1c1b24;
+    }
+    &-subtitle {
+      font-weight: 400;
+      font-size: 18px;
+      color: #1c1b24;
+      opacity: 0.5;
+    }
+  }
+  &-project {
+    padding: 100px 64px;
+    background-color: #000f2b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    &-title {
+      font-weight: 400;
+      font-size: 40px;
+      color: #ffffff;
+      text-align: center;
+      width: 500px;
+      margin-bottom: 32px;
+    }
+    &-subtitle {
+      font-weight: 500;
+      font-size: 14px;
+      color: #ffffff;
+      text-align: center;
+      width: 500px;
+    }
+  }
+  &-products {
+    padding: 100px 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    background-color: #f9f9f9;
+    &-title {
+      font-weight: 400;
+      font-size: 50px;
+      color: #1c1b24;
+    }
+    &-card {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+      &-title {
+        font-weight: 500;
+        font-size: 20px;
+        color: #1c1b24;
+        text-align: center;
+      }
+      &-description {
+        font-weight: 400;
+        font-size: 16px;
+        color: #1c1b24;
+        opacity: 0.5;
+        text-align: center;
+      }
+    }
+  }
+  &-content {
+    margin-top: 100px;
+    margin-bottom: 80px;
+    padding: 0px 64px;
+    &-title {
+      font-weight: 400;
+      font-size: 24px;
+      color: #000000;
+    }
+    &-subtitle {
+      font-weight: 500;
+      font-size: 16px;
+      color: #000000;
+    }
+  }
+  &-product {
+    &-inquiry {
+      background-color: #f9f9f9;
+      padding: 100px 64px;
+      &-title {
+        font-weight: 400;
+        font-size: 36px;
+        color: #1c1b24;
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      &-form {
+        background-color: #ffffff;
+        box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.13);
+        border-radius: 5px;
+        padding: 30px;
+
+        & .ant-form-vertical .ant-form-item-label > label {
+          color: #1c1b24;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 4px;
+        }
+        &-input {
+          border-radius: 5px;
+          box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.102273);
+          border: 1px solid #dedede;
+        }
+      }
+      &-map {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        &-title {
+          font-weight: 500;
+          font-size: 20px;
+          color: #1c1b24;
+          margin-bottom: 4px;
+        }
+        &-description {
+          font-weight: 400;
+          font-size: 16px;
+          color: #1c1b24;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

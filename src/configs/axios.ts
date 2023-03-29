@@ -1,6 +1,6 @@
 import Axios, { InternalAxiosRequestConfig } from "axios";
 
-import { useNotification } from "@/hooks/useNotification";
+import useNotification from "@/hooks/useNotification";
 
 export const axiosInstance = Axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -17,7 +17,6 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     const { addError } = useNotification();
-
     if (error.response?.status === 500 && error?.response?.data?.message === "Token Not Valid") {
       addError("Token Expired, Login Again");
     }

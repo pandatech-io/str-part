@@ -1,4 +1,4 @@
-$white: #ffffff;
+$pd-color-white: #ffffff;
 $pd-color-light-gray: #f2f5f7;
 $pd-color-gray: #cccccc;
 $pd-color-dark-gray: #777777;
@@ -8,7 +8,7 @@ $pd-color-cerulean-blue: #2154a8;
 $pd-color-cyan-blue: #334756;
 
 // color theme
-$primary-color: $white;
+$primary-color: #0a2862;
 $secondary-color: lighten($primary-color, 20);
 $button-color: $pd-color-cerulean-blue;
 

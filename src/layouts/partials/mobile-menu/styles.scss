@@ -1,0 +1,64 @@
+@import "../../../scss/variables/index";
+
+.pd-mobile-menu {
+  background-color: rgba($primary-color, 0.9);
+  color: $pd-color-light-gray;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow-y: hidden;
+  z-index: 4;
+
+  .header {
+    font-size: 25px;
+    font-weight: 600;
+    margin: $spacing-lg 0;
+
+    .side-btn {
+      cursor: pointer;
+      position: absolute;
+      right: 17px;
+      z-index: 1;
+
+      &--right {
+        font-size: $pd-font-size-sm;
+        font-weight: 500;
+        margin-top: 6px;
+        right: 20px;
+      }
+    }
+    .title {
+      color: $pd-color-white;
+      text-align: center;
+    }
+  }
+
+  .mobile-menu {
+    padding: 0px 20px;
+    width: 100%;
+    a {
+      display: block;
+
+      &:hover {
+        color: $pd-color-white;
+      }
+
+      &:not(:last-of-type) {
+        border-bottom: solid 1px $pd-color-gray;
+      }
+    }
+
+    .menu {
+      font-size: 16px;
+      list-style: none;
+      padding: $spacing-md $spacing-sm;
+
+      &:hover {
+        background: rgba($pd-color-white, 0.1);
+        transition: background 0.2s;
+      }
+    }
+  }
+}

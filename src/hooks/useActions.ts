@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { useNotification } from "@/hooks/useNotification";
+import useNotification from "./useNotification";
 import { WEB_SERVICES } from "@/services";
 
 const useActions = () => {

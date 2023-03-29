@@ -1,0 +1,18 @@
+.pd-about {
+  background-color: #f9f9f9;
+  padding: 80px 64px 100px;
+  &-title {
+    text-align: center;
+    font-weight: 400;
+    font-size: 36px;
+    color: #1c1b24;
+    margin-bottom: 48px;
+  }
+  &-container {
+    display: flex;
+    justify-content: center;
+  }
+  &-content {
+    width: 1024px;
+  }
+}

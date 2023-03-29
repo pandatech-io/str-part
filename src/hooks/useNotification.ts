@@ -1,6 +1,6 @@
 import { notification } from "antd";
 
-export const useNotification = () => {
+const useNotification = () => {
   const addError = (label?: string) =>
     notification.error({
       message: label || "Something went wrong!",
@@ -15,3 +15,5 @@ export const useNotification = () => {
 
   return { addError, addSuccess };
 };
+
+export default useNotification;
