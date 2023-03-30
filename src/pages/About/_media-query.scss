@@ -1,0 +1,21 @@
+@import "../../scss/variables/index";
+
+@media only screen and (max-width: $desktop) {
+  .pd-about {
+    padding: 40px 32px 80px;
+    &-title {
+      margin-bottom: 32px;
+    }
+    &-content {
+      width: 1024px;
+      &-wrapper {
+        margin-top: 48px;
+      }
+    }
+    &-slider {
+      &-wrapper {
+        margin-top: 75px;
+      }
+    }
+  }
+}

@@ -32,4 +32,13 @@
       opacity: 0.5;
     }
   }
+  &-slider {
+    &-wrapper {
+      display: "flex";
+      justify-content: "center";
+      margin-top: 150px;
+    }
+  }
 }
+
+@import "./media-query";

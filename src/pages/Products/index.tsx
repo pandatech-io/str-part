@@ -55,7 +55,7 @@ const Products = () => {
                 {selectedCategories > 0 ? (
                   <React.Fragment>
                     {category?.data.Products.map((product) => (
-                      <Col span={8} key={product.id}>
+                      <Col md={12} lg={8} key={product.id}>
                         <div className="pd-products-card">
                           <img
                             src={product.fakepath}
@@ -77,7 +77,7 @@ const Products = () => {
                 ) : (
                   <React.Fragment>
                     {products?.data.map((product) => (
-                      <Col span={8} key={product.id}>
+                      <Col md={12} lg={8} key={product.id}>
                         <div className="pd-products-card">
                           <img
                             src={product.fakepath}

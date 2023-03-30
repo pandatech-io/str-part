@@ -87,6 +87,32 @@ const About = () => {
     slidesToScroll: 1,
     nextArrow: <CustomArrowNext />,
     prevArrow: <CustomArrowPrev />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 444,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   const sliders = [
@@ -114,22 +140,22 @@ const About = () => {
 
   return (
     <BaseLayout>
-      <img src={BannerLogo} alt="banner" width="100%" height={550} />
+      <img src={BannerLogo} alt="banner" width="100%" height={400} />
       <div className="pd-about">
         <div className="pd-about-title">About Us</div>
         <div className="pd-about-container">
           <div className="pd-about-content">
             <Row>
-              <Col span={11}>
+              <Col xs={24} lg={11}>
                 <img
                   src={AboutImage}
                   alt="about"
                   width="100%"
                   height={366}
-                  style={{ objectFit: "contain" }}
+                  style={{ height: "auto" }}
                 />
               </Col>
-              <Col span={11} offset={2}>
+              <Col xs={24} lg={{ span: 11, offset: 2 }}>
                 <div className="pd-about-content-wrapper">
                   {aboutContent.map((about) => (
                     <div key={about.title}>
@@ -142,16 +168,12 @@ const About = () => {
             </Row>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: 150,
-          }}
-        >
+        <div className="pd-about-slider-wrapper">
           <div
             style={{
-              width: 1024,
+              maxWidth: 1024,
+              width: "100%",
+              padding: "0px 16px",
             }}
           >
             <Slider {...settings}>
@@ -179,7 +201,7 @@ const About = () => {
           <div
             style={{
               marginTop: 56,
-              width: 900,
+              maxWidth: 900,
               paddingTop: 48,
               borderTop: "1px solid #BBBBBB",
               textAlign: "center",
