@@ -13,13 +13,13 @@ import "./style.scss";
 const Home = () => {
   const dummyData = [
     {
-      title: "Showcase and embed your work with",
+      title: "Pamerkan dan sematkan karya anda",
     },
     {
-      title: "Publish across social channels in a click",
+      title: "Publikasikan di seluruh saluran sosial dengan sekali klik",
     },
     {
-      title: "Sell your videos worldwide",
+      title: "Jual video Anda di seluruh dunia",
     },
   ];
   const { data } = useQuery(["products"], () => WEB_SERVICES.Product.getProducts());
@@ -34,7 +34,7 @@ const Home = () => {
     <BaseLayout>
       <div className="pd-home">
         <Row className="pd-home-container">
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <div
               style={{
                 display: "flex",
@@ -44,22 +44,22 @@ const Home = () => {
               <img
                 src={MotorLogo}
                 alt="motor"
-                width={450}
-                height={280}
+                width="100%"
+                height="100%"
                 style={{
-                  width: 450,
-                  height: 280,
+                  maxWidth: 450,
+                  maxHeight: 280,
                   objectFit: "contain",
                 }}
               />
             </div>
           </Col>
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <div className="pd-home-main-wrapper">
-              <div className="pd-home-main-title">The Best Investment For Your Future</div>
+              <div className="pd-home-main-title">Investasi Terbaik bagi Masa Depan</div>
               <div className="pd-home-main-subtitle">
-                In efforts to expand our horizons, we welcome every investment-minded individual to
-                join us in the Condotel Investment Opportunity.
+                Dalam upaya memperluas jangkauan, kami menerima setiap individu yang tertarik pada
+                investasi untuk bergabung dalam Peluang Investasi Condotel.
               </div>
               <ConfigProvider
                 theme={{
@@ -71,7 +71,7 @@ const Home = () => {
               >
                 <div>
                   <Button type="primary" size="large" style={{ letterSpacing: 4 }}>
-                    PRODUCTS
+                    PRODUK
                   </Button>
                 </div>
               </ConfigProvider>
@@ -79,7 +79,7 @@ const Home = () => {
           </Col>
         </Row>
         <div className="pd-home-project">
-          <div className="pd-home-project-title">Exclusive Features For The Next Project</div>
+          <div className="pd-home-project-title">Fitur Ekskusif untuk Project Selanjutnya</div>
           <iframe
             width="80%"
             height="315"
@@ -87,20 +87,20 @@ const Home = () => {
             title="youtube"
           />
           <div className="pd-home-project-subtitle">
-            All base UI elements are made using Nested Symbols and shared styles that are logically
-            connected with one another.
+            Semua elemen UI dibuat menggunakan Nested Symbols dan styles yang terhubung satu sama
+            lain
           </div>
         </div>
         <div className="pd-home-products">
-          <div className="pd-home-products-title">Explore Our Products</div>
+          <div className="pd-home-products-title">Jelajahi Produk Kami</div>
           <Row
             gutter={[40, 40]}
             style={{
-              width: 900,
+              maxWidth: 900,
             }}
           >
             {data?.data.slice(0, 6).map((product) => (
-              <Col span={8} key={product.title}>
+              <Col xs={24} sm={12} lg={8} key={product.title}>
                 <div className="pd-home-products-card">
                   <img src={product.fakepath} alt={product.title} width={100} height={70} />
                   <div className="pd-home-products-card-title">{product.title}</div>
@@ -111,7 +111,7 @@ const Home = () => {
           </Row>
         </div>
         <Row className="pd-home-content">
-          <Col span={12}>
+          <Col xs={24} lg={12}>
             <div
               style={{
                 display: "flex",
@@ -121,30 +121,32 @@ const Home = () => {
               <img
                 src={MotorBodyLogo}
                 alt="motor"
-                width={450}
-                height={280}
+                width="100%"
+                height="100%"
                 style={{
-                  width: 450,
-                  height: 280,
+                  maxWidth: 450,
+                  maxHeight: 280,
                   objectFit: "contain",
                 }}
               />
             </div>
           </Col>
           <Col
-            span={12}
+            xs={24}
+            lg={12}
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 16,
+              gap: 24,
             }}
           >
             <div className="pd-home-content-title">
-              Long headline on two lines to turn your visitors into users and achieve more
+              Buat judul pada dua baris dapat mengubah pengunjung anda menjadi pengguna, dan
+              dapatkan lebih banyak lagi.{" "}
             </div>
             <div className="pd-home-content-subtitle">
-              Separated they live in Bookmarks right at the coast of the famous Semantics, large
-              language ocean Separated they live in Bookmarks right at the coast
+              Terpisah mereka tinggal di Bookmark tepat di pantai Semantik yang terkenal, samudra
+              bahasa besar Terpisah mereka tinggal di Bookmark tepat di pantai
             </div>
             <div
               style={{
@@ -177,7 +179,7 @@ const Home = () => {
           </Col>
         </Row>
         <div className="pd-home-product-inquiry">
-          <div className="pd-home-product-inquiry-title">Product Inquiry</div>
+          <div className="pd-home-product-inquiry-title">Pertanyaan seputar Produk</div>
           <div
             style={{
               display: "flex",
@@ -186,10 +188,16 @@ const Home = () => {
           >
             <Row
               style={{
-                width: 900,
+                maxWidth: 900,
               }}
             >
-              <Col span={11}>
+              <Col
+                xs={24}
+                lg={{
+                  span: 11,
+                  offset: 1,
+                }}
+              >
                 <div className="pd-home-product-inquiry-form">
                   <Form name="basic" autoComplete="off" layout="vertical" onFinish={handleFinish}>
                     <Form.Item label="Email" name="email">
@@ -197,17 +205,17 @@ const Home = () => {
                     </Form.Item>
                     <Row>
                       <Col span={11}>
-                        <Form.Item label="Your Name" name="name">
+                        <Form.Item label="Nama Anda" name="name">
                           <Input size="large" className="pd-home-product-inquiry-form-input" />
                         </Form.Item>
                       </Col>
                       <Col span={11} offset={2}>
-                        <Form.Item label="Phone Number" name="phone">
+                        <Form.Item label="No Handphone" name="subject">
                           <Input size="large" className="pd-home-product-inquiry-form-input" />
                         </Form.Item>
                       </Col>
                     </Row>
-                    <Form.Item label="Your Message" name="message">
+                    <Form.Item label="Pesan Anda" name="message">
                       <Input size="large" className="pd-home-product-inquiry-form-input" />
                     </Form.Item>
                     <ConfigProvider
@@ -225,17 +233,24 @@ const Home = () => {
                         style={{ letterSpacing: 4, fontSize: 14, marginTop: 32 }}
                         loading={isLoading}
                       >
-                        SEND
+                        KIRIM
                       </Button>
                     </ConfigProvider>
                   </Form>
                 </div>
               </Col>
-              <Col span={11} offset={2} className="pd-home-product-inquiry-map">
+              <Col
+                xs={24}
+                lg={{
+                  span: 11,
+                  offset: 1,
+                }}
+                className="pd-home-product-inquiry-map"
+              >
                 <img src={MapImage} alt="map" width={450} height={300} />
                 <Row>
                   <Col span={24}>
-                    <div className="pd-home-product-inquiry-map-title">Where to find Us</div>
+                    <div className="pd-home-product-inquiry-map-title">Hubungi Kami</div>
                   </Col>
                   <Col span={11} className="pd-home-product-inquiry-map-description">
                     San Francisco, 28 Eva Mountain Suite 942.

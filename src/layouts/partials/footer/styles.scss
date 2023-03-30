@@ -1,5 +1,4 @@
 @import "../../../scss/variables/index";
-@import "./media-query";
 
 .pd-footer {
   background: $pd-color-white;
@@ -42,5 +41,6 @@
     font-size: 14px;
     color: #1c1b24;
     text-transform: uppercase;
+    text-align: center;
   }
 }

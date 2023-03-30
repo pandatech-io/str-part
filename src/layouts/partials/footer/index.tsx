@@ -55,7 +55,9 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        <div className="pd-footer-copyright">© 2017 getcraftwork.com. All rights reserved.</div>
+        <div className="pd-footer-copyright">
+          © 2017 getcraftwork.com. Semua hak dilindungi undang-undang.
+        </div>
       </div>
     </div>
   );
