@@ -12,4 +12,11 @@ export const productServices = {
     });
     return response.data;
   },
+  getProduct: async (id?: string) => {
+    const response: AxiosResponse<IResponse<IProduct>> = await axiosInstance({
+      url: `/products/${id}`,
+      method: "get",
+    });
+    return response.data;
+  },
 };

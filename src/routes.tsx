@@ -5,6 +5,7 @@ import { Routes as Switch, Route, BrowserRouter } from "react-router-dom";
 
 const Home = lazy(() => import("./pages/Home"));
 const Products = lazy(() => import("./pages/Products"));
+const DetailProduct = lazy(() => import("./pages/Products/detail"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 
@@ -16,6 +17,10 @@ const routes = [
   {
     Component: Products,
     path: "/products",
+  },
+  {
+    Component: DetailProduct,
+    path: "/products/:id",
   },
   {
     Component: About,
