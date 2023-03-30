@@ -1,11 +1,10 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { Button, Col, ConfigProvider, Form, Input, Row } from "antd";
+import { useQuery } from "@tanstack/react-query";
+import { Button, Col, ConfigProvider, Row } from "antd";
 
-import MapImage from "@/assets/map.webp";
 import MotorBodyLogo from "@/assets/motor.webp";
 import MotorLogo from "@/assets/r25-4-med.webp";
+import Contact from "@/components/contact";
 import BaseLayout from "@/layouts/baseLayout";
-import { IContact } from "@/libs/interfaces/mail";
 import { WEB_SERVICES } from "@/services";
 
 import "./style.scss";
@@ -23,13 +22,7 @@ const Home = () => {
     },
   ];
   const { data } = useQuery(["products"], () => WEB_SERVICES.Product.getProducts());
-  const { mutate, isLoading } = useMutation(["send-email"], (payload: IContact) =>
-    WEB_SERVICES.Mail.sendContact(payload),
-  );
 
-  const handleFinish = (values: IContact) => {
-    mutate(values);
-  };
   return (
     <BaseLayout>
       <div className="pd-home">
@@ -180,88 +173,7 @@ const Home = () => {
         </Row>
         <div className="pd-home-product-inquiry">
           <div className="pd-home-product-inquiry-title">Pertanyaan seputar Produk</div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Row
-              style={{
-                maxWidth: 900,
-              }}
-            >
-              <Col
-                xs={24}
-                lg={{
-                  span: 11,
-                  offset: 1,
-                }}
-              >
-                <div className="pd-home-product-inquiry-form">
-                  <Form name="basic" autoComplete="off" layout="vertical" onFinish={handleFinish}>
-                    <Form.Item label="Email" name="email">
-                      <Input size="large" className="pd-home-product-inquiry-form-input" />
-                    </Form.Item>
-                    <Row>
-                      <Col span={11}>
-                        <Form.Item label="Nama Anda" name="name">
-                          <Input size="large" className="pd-home-product-inquiry-form-input" />
-                        </Form.Item>
-                      </Col>
-                      <Col span={11} offset={2}>
-                        <Form.Item label="No Handphone" name="subject">
-                          <Input size="large" className="pd-home-product-inquiry-form-input" />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                    <Form.Item label="Pesan Anda" name="message">
-                      <Input size="large" className="pd-home-product-inquiry-form-input" />
-                    </Form.Item>
-                    <ConfigProvider
-                      theme={{
-                        token: {
-                          paddingContentHorizontal: 25,
-                          paddingContentVertical: 14,
-                        },
-                      }}
-                    >
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        size="large"
-                        style={{ letterSpacing: 4, fontSize: 14, marginTop: 32 }}
-                        loading={isLoading}
-                      >
-                        KIRIM
-                      </Button>
-                    </ConfigProvider>
-                  </Form>
-                </div>
-              </Col>
-              <Col
-                xs={24}
-                lg={{
-                  span: 11,
-                  offset: 1,
-                }}
-                className="pd-home-product-inquiry-map"
-              >
-                <img src={MapImage} alt="map" width={450} height={300} />
-                <Row>
-                  <Col span={24}>
-                    <div className="pd-home-product-inquiry-map-title">Hubungi Kami</div>
-                  </Col>
-                  <Col span={11} className="pd-home-product-inquiry-map-description">
-                    San Francisco, 28 Eva Mountain Suite 942.
-                  </Col>
-                  <Col span={11} offset={2} className="pd-home-product-inquiry-map-description">
-                    alexei@getcraftwork.com +8 (477) 539-404-6542
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </div>
+          <Contact />
         </div>
       </div>
     </BaseLayout>

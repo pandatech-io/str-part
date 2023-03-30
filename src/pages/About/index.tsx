@@ -64,19 +64,19 @@ const CustomArrowPrev = ({ onClick }: any) => (
 const About = () => {
   const aboutContent = [
     {
-      title: "Quality Products",
+      title: "Produk Berkualitas",
       description:
-        "If you spend a good percentage of your time coding in a specific environment, you should know exactly how to control it.",
+        "Jika Anda menghabiskan waktu coding anda dengan baik pada lingkungan tertentu, Anda harus tahu persis bagaimana cara mengendalikannya.",
     },
     {
-      title: "Extended Manufacturer’s Warranty",
+      title: "Garansi Pabrikan yang Diperpanjang",
       description:
-        "If you spend a good percentage of your time coding in a specific environment, you should know exactly how to control it.",
+        "Jika Anda menghabiskan waktu coding anda dengan baik pada lingkungan tertentu, Anda harus tahu persis bagaimana cara mengendalikannya.",
     },
     {
-      title: "100% Customer Satisfaction Guarantee",
+      title: "100% Jaminan Kepuasan Pelanggan",
       description:
-        "Unstoppable programmers spend their time doing deep work, and the number of hours spent working don’t matter.",
+        "Jika Anda menghabiskan waktu coding anda dengan baik pada lingkungan tertentu, Anda harus tahu persis bagaimana cara mengendalikannya.",
     },
   ];
 
@@ -142,7 +142,7 @@ const About = () => {
     <BaseLayout>
       <img src={BannerLogo} alt="banner" width="100%" height={400} />
       <div className="pd-about">
-        <div className="pd-about-title">About Us</div>
+        <div className="pd-about-title">Tentang Perusahaan</div>
         <div className="pd-about-container">
           <div className="pd-about-content">
             <Row>
@@ -211,10 +211,10 @@ const About = () => {
               opacity: 0.5,
             }}
           >
-            These are the basics of what to look for in your new telescope. Finally, make sure the
-            telescope can be enhanced and expanded without having to throw the first unit away and
-            buy something completely new. You want your telescope to grow as your knowledge and
-            skills grow.
+            Ini adalah dasar-dasar dari apa yang harus dicari di teleskop baru Anda. Terakhir,
+            pastikan teleskop dapat ditingkatkan dan diperluas tanpa harus membuang unit pertama dan
+            membeli sesuatu yang benar-benar baru. Anda ingin teleskop Anda tumbuh seiring dengan
+            bertambahnya pengetahuan dan keterampilan Anda.
           </div>
         </div>
       </div>
