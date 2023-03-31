@@ -1,0 +1,11 @@
+@import "../../scss/variables/index";
+
+@media only screen and (max-width: $desktop) {
+  .pd-contact {
+    &-product {
+      &-inquiry {
+        padding: 60px 24px 80px;
+      }
+    }
+  }
+}

@@ -159,8 +159,8 @@ const Home = () => {
                 >
                   <div
                     style={{
-                      width: 18,
-                      height: 18,
+                      minWidth: 18,
+                      minHeight: 18,
                       border: "1px solid #F5A623",
                       borderRadius: "100%",
                     }}
