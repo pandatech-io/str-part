@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { Col, Row, Tabs } from "antd";
+import { Col, Empty, Row, Spin, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -23,16 +23,19 @@ const Products = () => {
           setSelectedCategories(data.data[0].id);
         }
       },
+      refetchOnWindowFocus: false,
     },
   );
-  const { data: category } = useQuery(
+  const { data: category, isFetching } = useQuery(
     ["category", selectedCategories],
     () => WEB_SERVICES.Category.getCategory(selectedCategories),
     {
       enabled: !!categories?.data.length && selectedCategories > 0,
+      refetchOnWindowFocus: false,
     },
   );
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 444px)");
 
   const onChange = (key: string) => {
     setSelectedCategories(Number(key));
@@ -42,25 +45,53 @@ const Products = () => {
     key: data.id.toString(),
     label: data.title,
     children: (
-      <Row gutter={[24, 24]}>
-        {category?.data.Products.map((product) => (
-          <Col span={24} key={product.id} onClick={() => navigate(`/products/${product.id}`)}>
-            <div className="pd-products-card">
-              <img
-                src={product.fakepath}
-                alt={product.title}
-                width="100%"
-                height="100%"
-                style={{ objectFit: "contain" }}
-              />
-              <div className="pd-products-card-hover">
-                <div className="pd-products-card-title">{product.title}</div>
-                <div className="pd-products-card-description">{product.description}</div>
-              </div>
-            </div>
-          </Col>
-        ))}
-      </Row>
+      <React.Fragment>
+        {isFetching ? (
+          <Row justify="center">
+            <Col
+              span={4}
+              style={{
+                marginTop: 32,
+              }}
+            >
+              <Spin size="large" />
+            </Col>
+          </Row>
+        ) : (
+          <Row
+            gutter={[24, 24]}
+            justify={category?.data && category?.data?.Products?.length < 1 ? "center" : "start"}
+          >
+            {category?.data && category?.data?.Products?.length < 1 ? (
+              <Empty />
+            ) : (
+              <React.Fragment>
+                {category?.data.Products.map((product) => (
+                  <Col
+                    span={24}
+                    key={product.id}
+                    onClick={() => navigate(`/products/${product.id}`)}
+                  >
+                    <div className="pd-products-card">
+                      <img
+                        src={product.fakepath}
+                        alt={product.title}
+                        width="100%"
+                        height="100%"
+                        style={{ objectFit: "contain" }}
+                      />
+                      <div className="pd-products-card-hover">
+                        <div className="pd-products-card-title">{product.title}</div>
+                        <div className="pd-products-card-description">{product.description}</div>
+                      </div>
+                    </div>
+                  </Col>
+                ))}
+              </React.Fragment>
+            )}
+          </Row>
+        )}
+      </React.Fragment>
     ),
   }));
   return (
@@ -68,10 +99,11 @@ const Products = () => {
       <div className="pd-products">
         <div className="pd-products-container">
           <div className="pd-products-title">Produk Kami</div>
-          {isMobile ? (
+          {isTablet ? (
             <Tabs
               defaultActiveKey={selectedCategories.toString()}
               items={items}
+              style={{ width: isMobile ? 320 : 500 }}
               onChange={onChange}
             />
           ) : (
@@ -91,30 +123,51 @@ const Products = () => {
                 ))}
               </Col>
               <Col span={20} offset={2}>
-                <Row gutter={[32, 32]}>
-                  {category?.data.Products.map((product) => (
-                    <Col
-                      md={12}
-                      lg={8}
-                      key={product.id}
-                      onClick={() => navigate(`/products/${product.id}`)}
-                    >
-                      <div className="pd-products-card">
-                        <img
-                          src={product.fakepath}
-                          alt={product.title}
-                          width="100%"
-                          height="100%"
-                          style={{ objectFit: "contain" }}
-                        />
-                        <div className="pd-products-card-hover">
-                          <div className="pd-products-card-title">{product.title}</div>
-                          <div className="pd-products-card-description">{product.description}</div>
-                        </div>
-                      </div>
+                {isFetching ? (
+                  <Row justify="center">
+                    <Col span={4} style={{ marginTop: 32 }}>
+                      <Spin size="large" />
                     </Col>
-                  ))}
-                </Row>
+                  </Row>
+                ) : (
+                  <Row
+                    gutter={[32, 32]}
+                    justify={
+                      category?.data && category?.data?.Products?.length < 1 ? "center" : "start"
+                    }
+                  >
+                    {category?.data && category?.data?.Products?.length < 1 ? (
+                      <Empty />
+                    ) : (
+                      <React.Fragment>
+                        {category?.data?.Products?.map((product) => (
+                          <Col
+                            md={12}
+                            lg={8}
+                            key={product.id}
+                            onClick={() => navigate(`/products/${product.id}`)}
+                          >
+                            <div className="pd-products-card">
+                              <img
+                                src={product.fakepath}
+                                alt={product.title}
+                                width="100%"
+                                height="100%"
+                                style={{ objectFit: "contain" }}
+                              />
+                              <div className="pd-products-card-hover">
+                                <div className="pd-products-card-title">{product.title}</div>
+                                <div className="pd-products-card-description">
+                                  {product.description}
+                                </div>
+                              </div>
+                            </div>
+                          </Col>
+                        ))}
+                      </React.Fragment>
+                    )}
+                  </Row>
+                )}
               </Col>
             </Row>
           )}
