@@ -100,7 +100,10 @@ const Products = () => {
                               selectedCategories === category.id ? "#0A2862" : "#ffffff",
                             color: selectedCategories === category.id ? "#ffffff" : "#1C1B24",
                           }}
-                          onClick={() => setSelectedCategories(category.id)}
+                          onClick={() => {
+                            setOpen(false);
+                            setSelectedCategories(category.id);
+                          }}
                           key={category.id}
                           role="presentation"
                         >
