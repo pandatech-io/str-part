@@ -59,11 +59,14 @@ const Products = () => {
     },
   );
 
+  const newProducts =
+    selectedCategories === 0
+      ? products?.data || []
+      : (category?.data && category?.data.Products) || [];
+
   const RenderModal = () => {
-    const findProduct = category?.data?.Products.findIndex(
-      (product) => product.id === selectedProduct,
-    );
-    const product = category?.data?.Products?.[findProduct as number];
+    const findProduct = newProducts.findIndex((product) => product.id === selectedProduct);
+    const product = newProducts?.[findProduct as number];
     return (
       <Modal
         open={selectedProduct > 0}
@@ -86,10 +89,6 @@ const Products = () => {
     );
   };
 
-  const newProducts =
-    selectedCategories === 0
-      ? products?.data || []
-      : (category?.data && category?.data.Products) || [];
   return (
     <BaseLayout>
       <div className="banner">Produk</div>
