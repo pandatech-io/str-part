@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { Button, Col, ConfigProvider, Form, Input, Row } from "antd";
 
-import MapImage from "@/assets/map.webp";
+import MapImage from "@/assets/maps.webp";
 import useNotification from "@/hooks/useNotification";
 import { IContact } from "@/libs/interfaces/mail";
 import { WEB_SERVICES } from "@/services";
