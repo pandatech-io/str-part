@@ -52,7 +52,7 @@ const Contact = () => {
                 <Input size="large" className="pd-contact-form-input" />
               </Form.Item>
               <Row>
-                <Col span={11}>
+                <Col lg={{ span: 11 }} xs={{ span: 24 }}>
                   <Form.Item
                     label="Nama Anda"
                     name="name"
@@ -61,7 +61,7 @@ const Contact = () => {
                     <Input size="large" className="pd-contact-form-input" />
                   </Form.Item>
                 </Col>
-                <Col span={11} offset={2}>
+                <Col lg={{ span: 11, offset: 2 }} xs={{ span: 24 }}>
                   <Form.Item
                     label="No Handphone"
                     name="subject"
@@ -95,6 +95,7 @@ const Contact = () => {
                   size="large"
                   style={{ letterSpacing: 4, fontSize: 14, marginTop: 32 }}
                   loading={isLoading}
+                  block
                 >
                   KIRIM
                 </Button>

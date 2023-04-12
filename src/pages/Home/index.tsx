@@ -46,16 +46,7 @@ const Home = () => {
   return (
     <BaseLayout>
       <div className="pd-home">
-        <video
-          width="100%"
-          style={{
-            maxHeight: 600,
-            objectFit: "cover",
-          }}
-          autoPlay
-          muted
-          loop
-        >
+        <video width="100%" autoPlay muted loop>
           <source src={Opening} type="video/mp4" />
         </video>
         <div className="pd-home-products">

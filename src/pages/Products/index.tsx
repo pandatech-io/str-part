@@ -79,7 +79,7 @@ const Products = () => {
                       <div className="pd-products-card-hover">
                         <div className="pd-products-card-hover-title">{product.title}</div>
                         <div className="pd-products-card-hover-description">
-                          {product.description}
+                          {product.description.slice(0, 150) + "..."}
                         </div>
                       </div>
                     </div>
@@ -121,6 +121,7 @@ const Products = () => {
   };
   return (
     <BaseLayout>
+      <div className="banner">Produk</div>
       <div className="pd-products">
         <div className="pd-products-container">
           <div className="pd-products-title">Produk Kami</div>
@@ -184,7 +185,7 @@ const Products = () => {
                               <div className="pd-products-card-hover">
                                 <div className="pd-products-card-hover-title">{product.title}</div>
                                 <div className="pd-products-card-hover-description">
-                                  {product.description}
+                                  {product.description.slice(0, 150) + "..."}
                                 </div>
                               </div>
                             </div>
