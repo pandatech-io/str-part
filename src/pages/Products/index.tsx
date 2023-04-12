@@ -1,9 +1,8 @@
 import * as React from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { Col, Empty, Row, Spin, Tabs } from "antd";
+import { Col, Empty, Modal, Row, Spin, Tabs } from "antd";
 import type { TabsProps } from "antd";
-import { useNavigate } from "react-router-dom";
 
 import useMediaQuery from "@/hooks/useMediaQuery";
 import BaseLayout from "@/layouts/baseLayout";
@@ -13,7 +12,7 @@ import "./style.scss";
 
 const Products = () => {
   const [selectedCategories, setSelectedCategories] = React.useState(0);
-  const navigate = useNavigate();
+  const [selectedProduct, setSelectedProduct] = React.useState(-1);
   const { data: categories } = useQuery(
     ["categories"],
     () => WEB_SERVICES.Category.getCategories(),
@@ -67,11 +66,7 @@ const Products = () => {
             ) : (
               <React.Fragment>
                 {category?.data.Products.map((product) => (
-                  <Col
-                    span={24}
-                    key={product.id}
-                    onClick={() => navigate(`/products/${product.id}`)}
-                  >
+                  <Col span={24} key={product.id} onClick={() => setSelectedProduct(product.id)}>
                     <div className="pd-products-card">
                       <img
                         src={product.fakepath}
@@ -80,9 +75,12 @@ const Products = () => {
                         height="100%"
                         style={{ objectFit: "contain" }}
                       />
+                      <div className="pd-products-card-title">{product.title}</div>
                       <div className="pd-products-card-hover">
-                        <div className="pd-products-card-title">{product.title}</div>
-                        <div className="pd-products-card-description">{product.description}</div>
+                        <div className="pd-products-card-hover-title">{product.title}</div>
+                        <div className="pd-products-card-hover-description">
+                          {product.description}
+                        </div>
                       </div>
                     </div>
                   </Col>
@@ -94,6 +92,33 @@ const Products = () => {
       </React.Fragment>
     ),
   }));
+
+  const RenderModal = () => {
+    const findProduct = category?.data?.Products.findIndex(
+      (product) => product.id === selectedProduct,
+    );
+    const product = category?.data?.Products?.[findProduct as number];
+    return (
+      <Modal
+        open={selectedProduct > 0}
+        title={product?.title}
+        onCancel={() => setSelectedProduct(-1)}
+        footer={null}
+      >
+        <img src={product?.fakepath} alt={product?.title} width="100%" />
+        <div
+          style={{
+            fontSize: 16,
+            fontWeight: 300,
+            color: "#1C1B24",
+            marginTop: 16,
+          }}
+        >
+          {product?.description}
+        </div>
+      </Modal>
+    );
+  };
   return (
     <BaseLayout>
       <div className="pd-products">
@@ -145,7 +170,7 @@ const Products = () => {
                             md={12}
                             lg={8}
                             key={product.id}
-                            onClick={() => navigate(`/products/${product.id}`)}
+                            onClick={() => setSelectedProduct(product.id)}
                           >
                             <div className="pd-products-card">
                               <img
@@ -155,9 +180,10 @@ const Products = () => {
                                 height="100%"
                                 style={{ objectFit: "contain" }}
                               />
+                              <div className="pd-products-card-title">{product.title}</div>
                               <div className="pd-products-card-hover">
-                                <div className="pd-products-card-title">{product.title}</div>
-                                <div className="pd-products-card-description">
+                                <div className="pd-products-card-hover-title">{product.title}</div>
+                                <div className="pd-products-card-hover-description">
                                   {product.description}
                                 </div>
                               </div>
@@ -173,6 +199,8 @@ const Products = () => {
           )}
         </div>
       </div>
+
+      <RenderModal />
     </BaseLayout>
   );
 };

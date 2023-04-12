@@ -1,3 +1,16 @@
+.banner {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/banner.webp");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .pd-contact {
   &-product {
     &-inquiry {
@@ -8,7 +21,7 @@
         font-size: 36px;
         color: #1c1b24;
         margin-bottom: 48px;
-        width: 940px;
+        text-align: center;
       }
       &-form {
         background-color: #ffffff;

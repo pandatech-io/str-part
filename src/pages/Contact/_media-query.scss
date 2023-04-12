@@ -9,3 +9,11 @@
     }
   }
 }
+
+@media only screen and (max-width: $tablet) {
+  .banner {
+    font-size: 32px;
+    text-align: center;
+    padding: 0px 16px;
+  }
+}
