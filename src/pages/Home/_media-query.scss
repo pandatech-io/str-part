@@ -2,23 +2,6 @@
 
 @media only screen and (max-width: $desktop) {
   .pd-home {
-    &-container {
-      margin-top: 100px;
-      margin-bottom: 60px;
-      padding: 0px 32px;
-    }
-    &-main {
-      &-title {
-        font-size: 36px;
-        margin-top: 48px;
-      }
-    }
-    &-project {
-      padding: 60px 32px;
-      &-title {
-        font-size: 36px;
-      }
-    }
     &-products {
       padding: 60px 32px;
       &-title {
@@ -34,6 +17,9 @@
         font-size: 32px;
         margin-top: 48px;
       }
+      & .ant-col > button {
+        margin-bottom: 64px;
+      }
     }
     &-product {
       &-inquiry {
@@ -41,6 +27,22 @@
         &-title {
           margin-bottom: 32px;
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $phone) {
+  .pd-home {
+    &-products {
+      padding: 60px 24px;
+    }
+    &-content {
+      padding: 0px 24px;
+    }
+    &-product {
+      &-inquiry {
+        padding: 60px 24px;
       }
     }
   }

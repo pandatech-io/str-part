@@ -1,3 +1,16 @@
+.banner {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../assets/banner.webp");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .pd-about {
   background-color: #f9f9f9;
   padding: 80px 64px 100px;
@@ -30,13 +43,6 @@
       font-weight: 400;
       color: #1c1b24;
       opacity: 0.5;
-    }
-  }
-  &-slider {
-    &-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 150px;
     }
   }
 }

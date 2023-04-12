@@ -6,6 +6,7 @@ import "./style.scss";
 const Contact = () => {
   return (
     <BaseLayout>
+      <div className="banner">Silahkan Hubungi Kami</div>
       <div className="pd-contact">
         <div className="pd-contact-product-inquiry">
           <div
@@ -14,7 +15,7 @@ const Contact = () => {
               justifyContent: "center",
             }}
           >
-            <div className="pd-contact-product-inquiry-title">Hubungi Kami!</div>
+            <div className="pd-contact-product-inquiry-title">Pertanyaan seputar Produk</div>
           </div>
           <ContactForm />
         </div>

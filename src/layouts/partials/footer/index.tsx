@@ -1,64 +1,92 @@
-import BeIcon from "@/assets/be.svg";
-import GoogleIcon from "@/assets/google.svg";
-import Rectangle from "@/assets/rectangle.png";
-import TwitterIcon from "@/assets/twitter.svg";
+import { Col, Row } from "antd";
+import { useNavigate } from "react-router-dom";
 
-import "./styles.scss";
+import "./style.scss";
 
 const Footer = () => {
-  const IconFooter = [
+  const navigations = [
     {
-      img: BeIcon,
-      name: "be icon",
+      to: "/",
+      name: "Beranda",
     },
     {
-      img: GoogleIcon,
-      name: "google icon",
+      to: "/products",
+      name: "Produk",
     },
     {
-      img: TwitterIcon,
-      name: "twitter icon",
+      to: "/about-us",
+      name: "Tentang",
+    },
+    {
+      to: "/contact-us",
+      name: "Hubungi Kami",
     },
   ];
+
+  const navigate = useNavigate();
   return (
     <div className="pd-footer">
-      <div className="pd-footer-container">
-        <img
-          src={Rectangle}
-          alt="rectangle"
-          width={135}
-          height={50}
-          style={{
-            width: 135,
-            height: 50,
-            objectFit: "contain",
+      <Row>
+        <Col
+          xs={{
+            span: 12,
           }}
-        />
-        <div>
-          <div className="pd-footer-address">36 Rue Geoffroy-Saint-Hilaire, 75005 Paris</div>
-          <div className="pd-footer-address">800-4321-5182</div>
-        </div>
-        <div className="pd-footer-logo-wrapper">
-          {IconFooter.map((icon) => (
-            <div className="pd-footer-logo" key={icon.name}>
-              <img
-                src={icon.img}
-                alt={icon.name}
-                width={15}
-                height={10}
-                style={{
-                  objectFit: "contain",
-                  width: 15,
-                  height: 10,
-                }}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="pd-footer-copyright">
-          © 2017 getcraftwork.com. Semua hak dilindungi undang-undang.
-        </div>
-      </div>
+          md={{
+            span: 4,
+            offset: 16,
+          }}
+        >
+          <div className="pd-footer-title">PRODUK</div>
+        </Col>
+        <Col
+          xs={{
+            span: 12,
+          }}
+          md={{
+            span: 4,
+          }}
+        >
+          <div className="pd-footer-title">INFO</div>
+          <div className="pd-footer-menu">
+            {navigations.map((navigation) => (
+              <div
+                className="pd-footer-menu-title"
+                key={navigation.name}
+                onClick={() => navigate(navigation.to)}
+                role="presentation"
+              >
+                {navigation.name}
+              </div>
+            ))}
+          </div>
+        </Col>
+      </Row>
+      <div className="pd-footer-divider" />
+      <Row>
+        <Col
+          xs={{
+            span: 24,
+          }}
+          md={{
+            span: 12,
+          }}
+          className="pd-footer-copyright"
+        >
+          copyright©2022 str indonesia. all rights reserved
+        </Col>
+        <Col span={8} />
+        <Col
+          xs={{
+            span: 24,
+          }}
+          md={{
+            span: 4,
+          }}
+          className="pd-footer-develop"
+        >
+          Develop by Pandatech.io
+        </Col>
+      </Row>
     </div>
   );
 };

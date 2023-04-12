@@ -12,10 +12,19 @@
         margin-top: 48px;
       }
     }
-    &-slider {
-      &-wrapper {
-        margin-top: 75px;
-      }
-    }
+  }
+}
+
+@media only screen and (max-width: $tablet) {
+  .banner {
+    font-size: 32px;
+    text-align: center;
+    padding: 0px 16px;
+  }
+}
+
+@media only screen and (max-width: $phone) {
+  .pd-about {
+    padding: 40px 24px 80px;
   }
 }

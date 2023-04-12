@@ -38,13 +38,7 @@ const Contact = () => {
           maxWidth: 1024,
         }}
       >
-        <Col
-          xs={24}
-          lg={{
-            span: 11,
-            offset: 1,
-          }}
-        >
+        <Col span={24}>
           <div className="pd-contact-form">
             <Form name="basic" autoComplete="off" layout="vertical" onFinish={handleFinish}>
               <Form.Item
@@ -85,7 +79,7 @@ const Contact = () => {
                 name="content"
                 rules={[{ required: true, message: "Harap masukkan pesan!" }]}
               >
-                <Input size="large" className="pd-contact-form-input" />
+                <Input.TextArea rows={4} size="large" className="pd-contact-form-input" />
               </Form.Item>
               <ConfigProvider
                 theme={{
@@ -108,26 +102,15 @@ const Contact = () => {
             </Form>
           </div>
         </Col>
-        <Col
-          xs={24}
-          lg={{
-            span: 11,
-            offset: 1,
-          }}
-          className="pd-contact-map"
-        >
-          <img src={MapImage} alt="map" width={450} height={300} />
-          <Row>
-            <Col span={24}>
-              <div className="pd-contact-map-title">Hubungi Kami</div>
-            </Col>
-            <Col span={11} className="pd-contact-map-description">
-              San Francisco, 28 Eva Mountain Suite 942.
-            </Col>
-            <Col span={11} offset={2} className="pd-contact-map-description">
-              alexei@getcraftwork.com +8 (477) 539-404-6542
-            </Col>
-          </Row>
+        <Col span={24} className="pd-contact-map">
+          <div className="pd-contact-map-title">Lokasi</div>
+          <img
+            src={MapImage}
+            alt="map"
+            width="100%"
+            height="auto"
+            style={{ objectFit: "contain" }}
+          />
         </Col>
       </Row>
     </div>
