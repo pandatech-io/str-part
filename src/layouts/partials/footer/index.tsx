@@ -84,7 +84,7 @@ const Footer = () => {
           }}
           className="pd-footer-develop"
         >
-          Develop by Pandatech.io
+          Developed by Pandatech.io
         </Col>
       </Row>
     </div>
