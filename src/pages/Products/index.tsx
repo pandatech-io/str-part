@@ -6,6 +6,8 @@ import { Button, Col, Dropdown, Empty, Modal, Row, Spin } from "antd";
 import Hamburger from "@/assets/hamburger";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import BaseLayout from "@/layouts/baseLayout";
+import { ICategory } from "@/libs/interfaces/categories";
+import { IResponse } from "@/libs/interfaces/response";
 import { WEB_SERVICES } from "@/services";
 
 import "./style.scss";
@@ -23,10 +25,20 @@ const Products = () => {
     {
       onSuccess: (data) => {
         if (data.data.length > 0) {
-          setSelectedCategories(10);
+          setSelectedCategories(0);
         }
       },
       refetchOnWindowFocus: false,
+      select: React.useCallback((data: IResponse<ICategory[]>) => {
+        const newData = data;
+        newData.data.unshift({
+          id: 0,
+          title: "Semua Produk",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+        return newData;
+      }, []),
     },
   );
   const { data: category, isFetching } = useQuery(
@@ -34,6 +46,15 @@ const Products = () => {
     () => WEB_SERVICES.Category.getCategory(selectedCategories),
     {
       enabled: !!categories?.data.length && selectedCategories > 0,
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  const { data: products } = useQuery(
+    ["products", selectedCategories],
+    () => WEB_SERVICES.Product.getProducts(),
+    {
+      enabled: selectedCategories === 0,
       refetchOnWindowFocus: false,
     },
   );
@@ -64,6 +85,11 @@ const Products = () => {
       </Modal>
     );
   };
+
+  const newProducts =
+    selectedCategories === 0
+      ? products?.data || []
+      : (category?.data && category?.data.Products) || [];
   return (
     <BaseLayout>
       <div className="banner">Produk</div>
@@ -122,17 +148,12 @@ const Products = () => {
                   />
                 </Dropdown>
               </div>
-              <Row
-                gutter={[24, 24]}
-                justify={
-                  category?.data && category?.data?.Products?.length < 1 ? "center" : "start"
-                }
-              >
-                {category?.data && category?.data?.Products?.length < 1 ? (
+              <Row gutter={[24, 24]} justify={newProducts?.length < 1 ? "center" : "start"}>
+                {newProducts?.length < 1 ? (
                   <Empty />
                 ) : (
                   <React.Fragment>
-                    {category?.data.Products.map((product) => (
+                    {newProducts.map((product) => (
                       <Col
                         xs={{
                           span: 24,
@@ -189,17 +210,12 @@ const Products = () => {
                     </Col>
                   </Row>
                 ) : (
-                  <Row
-                    gutter={[32, 32]}
-                    justify={
-                      category?.data && category?.data?.Products?.length < 1 ? "center" : "start"
-                    }
-                  >
-                    {category?.data && category?.data?.Products?.length < 1 ? (
+                  <Row gutter={[32, 32]} justify={newProducts?.length < 1 ? "center" : "start"}>
+                    {newProducts?.length < 1 ? (
                       <Empty />
                     ) : (
                       <React.Fragment>
-                        {category?.data?.Products?.map((product) => (
+                        {newProducts?.map((product) => (
                           <Col
                             md={12}
                             lg={8}
