@@ -84,7 +84,10 @@ const Footer = () => {
           }}
           className="pd-footer-develop"
         >
-          Developed by Pandatech.io
+          Developed by{" "}
+          <a href="https://pandatech.io/" target="_blank" rel="noreferrer">
+            Pandatech.io
+          </a>
         </Col>
       </Row>
     </div>
