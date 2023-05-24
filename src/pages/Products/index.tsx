@@ -49,29 +49,24 @@ const Products = () => {
       }, []),
     },
   );
-  const { data: category, isFetching } = useQuery(
-    ["category", selectedCategories],
-    () => WEB_SERVICES.Category.getCategory(selectedCategories),
-    {
-      enabled: !!categories?.data.length && selectedCategories > 0,
-      refetchOnWindowFocus: false,
-    },
-  );
+  // const { data: category, isFetching } = useQuery(
+  //   ["category", selectedCategories],
+  //   () => WEB_SERVICES.Category.getCategory(selectedCategories),
+  //   {
+  //     enabled: !!categories?.data.length && selectedCategories > 0,
+  //     refetchOnWindowFocus: false,
+  //   },
+  // );
 
-  const { data: products, isFetching: productFetching } = useQuery(
+  const { data: products, isFetching } = useQuery(
     ["products", selectedCategories, page],
-    () => WEB_SERVICES.Product.getProducts(page),
+    () => WEB_SERVICES.Product.getProducts(page, 12, selectedCategories),
     {
-      enabled: selectedCategories === 0,
       refetchOnWindowFocus: false,
     },
   );
 
-  const newProducts =
-    selectedCategories === 0
-      ? products?.data || []
-      : (category?.data && category?.data.Products) || [];
-
+  const newProducts = products?.data || [];
   const pagination = products?.metadata;
   const totalPage = pagination && Math.ceil(pagination?.total / pagination?.limit);
 
@@ -100,7 +95,6 @@ const Products = () => {
     );
   };
 
-  console.log(newProducts, products);
   return (
     <BaseLayout>
       <div className="banner">Produk</div>
@@ -140,6 +134,7 @@ const Products = () => {
                           onClick={() => {
                             setOpen(false);
                             setSelectedCategories(category.id);
+                            setPage(1);
                           }}
                           key={category.id}
                           role="presentation"
@@ -240,7 +235,10 @@ const Products = () => {
                       selectedCategories === category.id && "active"
                     }`}
                     key={index}
-                    onClick={() => setSelectedCategories(category.id)}
+                    onClick={() => {
+                      setPage(1);
+                      setSelectedCategories(category.id);
+                    }}
                     role="presentation"
                   >
                     {category.title}
@@ -248,7 +246,7 @@ const Products = () => {
                 ))}
               </Col>
               <Col span={20} offset={2}>
-                {isFetching || productFetching ? (
+                {isFetching ? (
                   <Row justify="center">
                     <Col span={4} style={{ marginTop: 32 }}>
                       <Spin size="large" />
