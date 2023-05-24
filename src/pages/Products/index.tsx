@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { useQuery } from "@tanstack/react-query";
-import { Button, Col, Dropdown, Empty, Modal, Row, Spin } from "antd";
+import { Button, Col, Dropdown, Empty, Modal, Pagination, Row, Spin } from "antd";
 
 import Hamburger from "@/assets/hamburger";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -16,6 +16,7 @@ const Products = () => {
   const [selectedCategories, setSelectedCategories] = React.useState(0);
   const [selectedProduct, setSelectedProduct] = React.useState(-1);
   const [open, setOpen] = React.useState(false);
+  const [page, setPage] = React.useState(1);
 
   const isTablet = useMediaQuery("(max-width: 768px)");
 
@@ -31,6 +32,13 @@ const Products = () => {
       refetchOnWindowFocus: false,
       select: React.useCallback((data: IResponse<ICategory[]>) => {
         const newData = data;
+
+        // move object with title "Lainnya to last element"
+        const index = data.data.findIndex((obj) => obj.title === "Lainnya");
+        const lainnyaObj = data.data.splice(index, 1)[0];
+        newData.data.push(lainnyaObj);
+
+        // Add object "Semua Produk" to first element
         newData.data.unshift({
           id: 0,
           title: "Semua Produk",
@@ -50,9 +58,9 @@ const Products = () => {
     },
   );
 
-  const { data: products } = useQuery(
-    ["products", selectedCategories],
-    () => WEB_SERVICES.Product.getProducts(),
+  const { data: products, isFetching: productFetching } = useQuery(
+    ["products", selectedCategories, page],
+    () => WEB_SERVICES.Product.getProducts(page),
     {
       enabled: selectedCategories === 0,
       refetchOnWindowFocus: false,
@@ -63,6 +71,9 @@ const Products = () => {
     selectedCategories === 0
       ? products?.data || []
       : (category?.data && category?.data.Products) || [];
+
+  const pagination = products?.metadata;
+  const totalPage = pagination && Math.ceil(pagination?.total / pagination?.limit);
 
   const RenderModal = () => {
     const findProduct = newProducts.findIndex((product) => product.id === selectedProduct);
@@ -89,6 +100,7 @@ const Products = () => {
     );
   };
 
+  console.log(newProducts, products);
   return (
     <BaseLayout>
       <div className="banner">Produk</div>
@@ -184,6 +196,40 @@ const Products = () => {
                   </React.Fragment>
                 )}
               </Row>
+
+              <div
+                style={{
+                  marginTop: 48,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 24,
+                  alignItems: "center",
+                }}
+              >
+                <Pagination
+                  total={pagination?.total}
+                  onChange={(page) => setPage(page)}
+                  current={page}
+                  showSizeChanger={false}
+                />
+
+                {pagination && (
+                  <div
+                    style={{
+                      color: "#ABAFB0",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {products.data.length === 0
+                      ? "No items found"
+                      : `Showing ${page == 1 ? 1 : (page - 1) * pagination.limit + 1} - ${
+                          page == totalPage
+                            ? (page - 1) * pagination.limit + products.data.length
+                            : page * pagination.limit
+                        } of ${pagination.total} entries`}
+                  </div>
+                )}
+              </div>
             </React.Fragment>
           ) : (
             <Row>
@@ -202,7 +248,7 @@ const Products = () => {
                 ))}
               </Col>
               <Col span={20} offset={2}>
-                {isFetching ? (
+                {isFetching || productFetching ? (
                   <Row justify="center">
                     <Col span={4} style={{ marginTop: 32 }}>
                       <Spin size="large" />
@@ -233,7 +279,9 @@ const Products = () => {
                               <div className="pd-products-card-hover">
                                 <div className="pd-products-card-hover-title">{product.title}</div>
                                 <div className="pd-products-card-hover-description">
-                                  {product.description.slice(0, 150) + "..."}
+                                  {product.description.length > 150
+                                    ? product.description.slice(0, 150) + "..."
+                                    : product.description}
                                 </div>
                               </div>
                             </div>
@@ -243,6 +291,37 @@ const Products = () => {
                     )}
                   </Row>
                 )}
+
+                <Row justify="space-between" align="middle" style={{ marginTop: 50 }}>
+                  {pagination && (
+                    <Col
+                      span={8}
+                      style={{
+                        color: "#ABAFB0",
+                        fontWeight: 400,
+                      }}
+                    >
+                      {products.data.length === 0
+                        ? "No items found"
+                        : `Showing ${page == 1 ? 1 : (page - 1) * pagination.limit + 1} - ${
+                            page == totalPage
+                              ? (page - 1) * pagination.limit + products.data.length
+                              : page * pagination.limit
+                          } of ${pagination.total} entries`}
+                    </Col>
+                  )}
+                  {products && (
+                    <Col span={8} style={{ display: "flex", justifyContent: "flex-end" }}>
+                      <Pagination
+                        total={pagination?.total}
+                        onChange={(page) => setPage(page)}
+                        current={page}
+                        showSizeChanger={false}
+                        pageSize={12}
+                      />
+                    </Col>
+                  )}
+                </Row>
               </Col>
             </Row>
           )}

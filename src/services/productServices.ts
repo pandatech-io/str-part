@@ -5,9 +5,9 @@ import { IProduct } from "@/libs/interfaces/products";
 import { IResponse } from "@/libs/interfaces/response";
 
 export const productServices = {
-  getProducts: async () => {
+  getProducts: async (page = 1, per_page = 12) => {
     const response: AxiosResponse<IResponse<IProduct[]>> = await axiosInstance({
-      url: `/products`,
+      url: `/products?page=${page}&limit=${per_page}`,
       method: "get",
     });
     return response.data;
