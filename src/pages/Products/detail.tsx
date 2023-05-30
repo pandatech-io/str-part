@@ -49,7 +49,7 @@ const Detail = () => {
             </div>
           </div>
           <img
-            src={data?.data.fakepath}
+            src={data?.data.thumbnail_path}
             alt={data?.data.title}
             height={200}
             width="100%"

@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 4,
+      "title": "Kampas ",
+      "createdAt": "2023-03-31T06:56:42.000Z",
+      "updatedAt": "2023-04-12T02:58:06.000Z"
+    },
+    {
+      "id": 5,
+      "title": "Kopling",
+      "createdAt": "2023-03-31T06:56:50.000Z",
+      "updatedAt": "2023-04-12T02:58:23.000Z"
+    },
+    {
+      "id": 6,
+      "title": "Bohlam",
+      "createdAt": "2023-03-31T07:26:43.000Z",
+      "updatedAt": "2023-05-23T09:03:51.000Z"
+    },
+    {
+      "id": 7,
+      "title": "Katrol",
+      "createdAt": "2023-03-31T07:26:52.000Z",
+      "updatedAt": "2023-04-12T02:58:46.000Z"
+    },
+    {
+      "id": 8,
+      "title": "Piston",
+      "createdAt": "2023-03-31T07:28:04.000Z",
+      "updatedAt": "2023-04-12T02:59:10.000Z"
+    },
+    {
+      "id": 9,
+      "title": "Lainnya",
+      "createdAt": "2023-04-12T02:59:17.000Z",
+      "updatedAt": "2023-04-12T02:59:17.000Z"
+    },
+    {
+      "id": 11,
+      "title": "Klakson",
+      "createdAt": "2023-05-23T09:00:07.000Z",
+      "updatedAt": "2023-05-23T09:00:07.000Z"
+    }
+  ],
+  "metadata": { "page": 1, "limit": 10, "total": 8, "totalPage": null }
+}

@@ -2,10 +2,10 @@ import { MenuFoldOutlined } from "@ant-design/icons";
 import { Col, Row } from "antd";
 import { NavLink } from "react-router-dom";
 
-import { navigations } from "./constans";
 import useActions from "./useActions";
 import MobileMenu from "../mobile-menu";
 import StrLogo from "@/assets/strlogo.png";
+import { navigations } from "@/constans/home";
 
 import "./styles.scss";
 
@@ -46,7 +46,7 @@ const Header = () => {
                 <ul className="menu font-ropasans">
                   {navigations.map((navigate) => (
                     <NavLink className="nav-link" to={navigate.to} key={navigate.name}>
-                      <li>{navigate.name}</li>
+                      <li data-testid={navigate.name}>{navigate.name}</li>
                     </NavLink>
                   ))}
                 </ul>

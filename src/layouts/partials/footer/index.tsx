@@ -1,28 +1,11 @@
 import { Col, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 
+import { navigations } from "@/constans/home";
+
 import "./style.scss";
 
 const Footer = () => {
-  const navigations = [
-    {
-      to: "/",
-      name: "Beranda",
-    },
-    {
-      to: "/products",
-      name: "Produk",
-    },
-    {
-      to: "/about-us",
-      name: "Tentang",
-    },
-    {
-      to: "/contact-us",
-      name: "Hubungi Kami",
-    },
-  ];
-
   const navigate = useNavigate();
   return (
     <div className="pd-footer">

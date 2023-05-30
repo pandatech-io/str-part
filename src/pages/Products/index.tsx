@@ -49,14 +49,6 @@ const Products = () => {
       }, []),
     },
   );
-  // const { data: category, isFetching } = useQuery(
-  //   ["category", selectedCategories],
-  //   () => WEB_SERVICES.Category.getCategory(selectedCategories),
-  //   {
-  //     enabled: !!categories?.data.length && selectedCategories > 0,
-  //     refetchOnWindowFocus: false,
-  //   },
-  // );
 
   const { data: products, isFetching } = useQuery(
     ["products", selectedCategories, page],
@@ -80,7 +72,7 @@ const Products = () => {
         onCancel={() => setSelectedProduct(-1)}
         footer={null}
       >
-        <img src={product?.fakepath} alt={product?.title} width="100%" />
+        <img src={product?.thumbnail_path} alt={product?.title} width="100%" />
         <div
           style={{
             fontSize: 16,
@@ -172,7 +164,7 @@ const Products = () => {
                       >
                         <div className="pd-products-card">
                           <img
-                            src={product.fakepath}
+                            src={"https://cms.strpart.com/" + product.thumbnail_path}
                             alt={product.title}
                             width="100%"
                             height="100%"
@@ -267,7 +259,7 @@ const Products = () => {
                           >
                             <div className="pd-products-card">
                               <img
-                                src={product.fakepath}
+                                src={"https://cms.strpart.com/" + product.thumbnail_path}
                                 alt={product.title}
                                 width="100%"
                                 height="100%"
