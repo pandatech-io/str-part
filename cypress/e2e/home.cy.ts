@@ -19,3 +19,5 @@ describe("Home", () => {
     cy.location("pathname").should("eq", "/products");
   });
 });
+
+export {};

@@ -120,3 +120,5 @@ describe("request api", () => {
       });
   });
 });
+
+export {};

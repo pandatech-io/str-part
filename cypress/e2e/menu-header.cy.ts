@@ -5,9 +5,9 @@ describe("Header", () => {
     cy.visit("/");
   });
 
-  // it("render correct img", () => {
-  //   cy.findByAltText("STR Indonesia").should("be.visible");
-  // });
+  it("render correct img", () => {
+    cy.findByAltText("STR Indonesia").should("be.visible");
+  });
 
   it("render correctly menu", () => {
     cy.get(".nav-link > li").should(($li) => {
@@ -27,3 +27,5 @@ describe("Header", () => {
     });
   });
 });
+
+export {};
