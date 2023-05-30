@@ -3,50 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 import MotorBodyLogo from "@/assets/motor.webp";
 import Opening from "@/assets/opening.mp4";
-import Product1 from "@/assets/product1.png";
-import Product2 from "@/assets/product2.png";
-import Product3 from "@/assets/product3.png";
 import Contact from "@/components/contact";
+import { dummyData, products } from "@/constans/home";
 import BaseLayout from "@/layouts/baseLayout";
 
 import "./style.scss";
 
 const Home = () => {
-  const dummyData = [
-    {
-      title: "Pamerkan dan sematkan karya anda",
-    },
-    {
-      title: "Publikasikan di seluruh saluran sosial dengan sekali klik",
-    },
-    {
-      title: "Jual video Anda di seluruh dunia",
-    },
-  ];
-  const products = [
-    {
-      title: "Baru di Diluncurkan",
-      description: "Fitur ini membantu anda untuk menonjolkan project anda dari para pesaing",
-      img: Product1,
-    },
-    {
-      title: "Berita Menarik",
-      description: "Fitur ini membantu anda untuk menonjolkan project anda dari para pesaing",
-      img: Product2,
-    },
-    {
-      title: "Cerita Insider",
-      description: "Fitur ini membantu anda untuk menonjolkan project anda dari para pesaing",
-      img: Product3,
-    },
-  ];
-
   const navigate = useNavigate();
-
   return (
     <BaseLayout>
       <div className="pd-home">
-        <video width="100%" autoPlay muted loop>
+        <video width="100%" autoPlay muted loop data-testid="video-opening">
           <source src={Opening} type="video/mp4" />
         </video>
         <div className="pd-home-products">
@@ -60,7 +28,13 @@ const Home = () => {
             {products.map((product) => (
               <Col xs={24} sm={12} lg={8} key={product.title}>
                 <div className="pd-home-products-card">
-                  <img src={product.img} alt={product.title} width={100} height={70} />
+                  <img
+                    src={product.img}
+                    alt={product.title}
+                    width={100}
+                    height={70}
+                    data-testid="product-img"
+                  />
                   <div className="pd-home-products-card-title">{product.title}</div>
                   <div className="pd-home-products-card-description">{product.description}</div>
                 </div>
@@ -86,6 +60,7 @@ const Home = () => {
                   padding: "14px 40px",
                   height: "fit-content",
                 }}
+                data-testid="product-btn"
                 onClick={() => navigate("/products")}
               >
                 Produk

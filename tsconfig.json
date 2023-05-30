@@ -18,8 +18,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": ["cypress", "@testing-library/cypress"]
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "./node_modules/cypress",
+    "cypress/**/*.ts",
+    "./node_modules/cypress-testing-library"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

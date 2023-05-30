@@ -96,6 +96,7 @@ const Contact = () => {
                   style={{ letterSpacing: 4, fontSize: 14, marginTop: 32 }}
                   loading={isLoading}
                   block
+                  data-testid="send-form"
                 >
                   KIRIM
                 </Button>

@@ -3,6 +3,7 @@ import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
 
 import { MobileMenuProps } from "./interfaces";
+import { navigations } from "@/constans/home";
 
 import "./styles.scss";
 
@@ -24,18 +25,11 @@ const MobileMenu = ({ handleClose }: MobileMenuProps) => {
       </Row>
       <Row>
         <div className="mobile-menu">
-          <Link to={"/"} onClick={handleClose}>
-            <div className="menu">Beranda</div>
-          </Link>
-          <Link to={"/products"} onClick={handleClose}>
-            <div className="menu">Produk</div>
-          </Link>
-          <Link to={"/about-us"} onClick={handleClose}>
-            <div className="menu">Tentang</div>
-          </Link>
-          <Link to={"/contact-us"} onClick={handleClose}>
-            <div className="menu">Hubungi Kami</div>
-          </Link>
+          {navigations.map((navigation) => (
+            <Link key={navigation.name} to={navigation.to} onClick={handleClose}>
+              <div className="menu">{navigation.name}</div>
+            </Link>
+          ))}
         </div>
       </Row>
     </div>
