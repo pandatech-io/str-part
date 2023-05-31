@@ -177,9 +177,15 @@ const Products = () => {
                           <div className="pd-products-card-title">{product.title}</div>
                           <div className="pd-products-card-hover">
                             <div className="pd-products-card-hover-title">{product.title}</div>
-                            <div className="pd-products-card-hover-description">
-                              {product.description.slice(0, 150) + "..."}
-                            </div>
+                            <div
+                              className="pd-products-card-hover-description"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  product.description.length > 150
+                                    ? product.description.slice(0, 150) + "..."
+                                    : product.description,
+                              }}
+                            />
                           </div>
                         </div>
                       </Col>
@@ -272,11 +278,15 @@ const Products = () => {
                               <div className="pd-products-card-title">{product.title}</div>
                               <div className="pd-products-card-hover">
                                 <div className="pd-products-card-hover-title">{product.title}</div>
-                                <div className="pd-products-card-hover-description">
-                                  {product.description.length > 150
-                                    ? product.description.slice(0, 150) + "..."
-                                    : product.description}
-                                </div>
+                                <div
+                                  className="pd-products-card-hover-description"
+                                  dangerouslySetInnerHTML={{
+                                    __html:
+                                      product.description.length > 150
+                                        ? product.description.slice(0, 150) + "..."
+                                        : product.description,
+                                  }}
+                                />
                               </div>
                             </div>
                           </Col>
