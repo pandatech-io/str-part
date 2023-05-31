@@ -7,7 +7,7 @@ This project uses React, React Query, Antd, Zustand, Cypress, and Typescript
 | Variable        | Description                                             |
 | --------------- | ------------------------------------------------------- |
 | `VITE_BASE_URL` | Base API URL for development (since we are using proxy) |
-|                 | example: `https://staging-api.gemilangsynergy.id/api`   |
+|                 | example: `https://cms.strpart.com/api/v1`               |
 
 ## Project Setup
 
