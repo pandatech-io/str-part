@@ -4,6 +4,12 @@
   font-family: "Ropa Sans", sans-serif;
 }
 
+b,
+strong {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,7 +24,7 @@
   display: none;
 }
 
-a {
+.nav-link {
   font-weight: 500;
   color: $pd-color-white;
   text-decoration: inherit;
