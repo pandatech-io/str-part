@@ -72,7 +72,11 @@ const Products = () => {
         onCancel={() => setSelectedProduct(-1)}
         footer={null}
       >
-        <img src={product?.thumbnail_path} alt={product?.title} width="100%" />
+        <img
+          src={"https://cms.strpart.com/" + product?.thumbnail_path}
+          alt={product?.title}
+          width="100%"
+        />
         <div
           style={{
             fontSize: 16,
