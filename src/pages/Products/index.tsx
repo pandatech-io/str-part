@@ -84,9 +84,8 @@ const Products = () => {
             color: "#1C1B24",
             marginTop: 16,
           }}
-        >
-          {product?.description}
-        </div>
+          dangerouslySetInnerHTML={{ __html: product?.description }}
+        />
       </Modal>
     );
   };
